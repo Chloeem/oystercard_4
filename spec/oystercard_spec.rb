@@ -1,4 +1,4 @@
-require_relative "../lib/oyster_card.rb"
+require_relative "../lib/oystercard.rb"
 
 describe Oystercard do
   # for a new instance of oystercard when we give it the balance method it is true
