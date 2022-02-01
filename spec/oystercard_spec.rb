@@ -36,12 +36,14 @@ describe Oystercard do
     
   end
 
-  # describe '#touch_in' do
-  #   it { is_expected.to respond_to(:touch_in) }
+  describe '#touch_in' do
+    it { is_expected.to respond_to(:touch_in) }
 
-  #   it 'touches in user at beginning of journey' do
-  #     expect {}
-  #   end
-  # end
+    it 'touches in user at beginning of journey' do
+      subject.top_up(10)
+      subject.touch_in
+      expect(subject).to be_in_journey 
+    end
+  end
 
 end
