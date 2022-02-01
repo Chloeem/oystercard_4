@@ -44,12 +44,18 @@ describe Oystercard do
       subject.touch_in
       expect(subject).to be_in_journey 
     end
+
+    it 'raises an error when balance is less minimum balance' do
+      expect { subject.touch_in }.to raise_error("Insufficient balance below minimum #{Oystercard::MINIMUM_BALANCE}")
+    end
   end
 
   describe '#touch_out' do
     it { is_expected.to respond_to(:touch_out) }
 
     it 'touches out the user at the end of the journey' do
+      subject.top_up(1)
+      subject.touch_in
       subject.touch_out
       expect(subject).not_to be_in_journey
     end
