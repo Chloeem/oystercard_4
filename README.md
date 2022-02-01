@@ -29,6 +29,8 @@ I want money on my card
 ```
 Behaviour = have a balance
 
+-----------------------------------------------------------
+
 ### Notes to self
 -----
 ```
@@ -39,3 +41,12 @@ Behaviour = have a balance
     end
 ```
 
+-----------------------------------------------------------
+
+## ERROR: Commit "Saving entry station: paused on a different error"
+```
+1) Oystercard#in_journey? starts off not in a journey
+     Failure/Error: expect(subject).not_to be_in_journey
+       expected `#<Oystercard:0x00007fb7619ae960 @balance=0, @entry_station=[]>.in_journey?` to be falsey, got true
+     # ./spec/oystercard_spec.rb:24:in `block (3 levels) in <top (required)>'
+```
