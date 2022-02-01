@@ -60,6 +60,8 @@ describe Oystercard do
     end
 
     it 'should deduct at the end of the journey with the minimum fare' do
+      subject.top_up(Oystercard::MINIMUM_BALANCE)
+      subject.touch_in
       expect { subject.touch_out }.to change { subject.balance }.by(-Oystercard::MINIMUM_BALANCE)
     end
   end
