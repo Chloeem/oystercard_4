@@ -29,4 +29,19 @@ describe Oystercard do
       end
   end
 
+  describe '#in_journey?' do
+    it 'starts off not in a journey' do
+      expect(subject).not_to be_in_journey 
+    end
+    
+  end
+
+  # describe '#touch_in' do
+  #   it { is_expected.to respond_to(:touch_in) }
+
+  #   it 'touches in user at beginning of journey' do
+  #     expect {}
+  #   end
+  # end
+
 end
