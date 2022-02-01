@@ -46,4 +46,13 @@ describe Oystercard do
     end
   end
 
+  describe '#touch_out' do
+    it { is_expected.to respond_to(:touch_out) }
+
+    it 'touches out the user at the end of the journey' do
+      subject.touch_out
+      expect(subject).not_to be_in_journey
+    end
+  end
+
 end

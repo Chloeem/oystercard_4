@@ -25,4 +25,10 @@ class Oystercard
       @in_journey = true
     end
 
+    def touch_out
+      if @in_journey == true 
+        @in_journey = false 
+      end
+    end
+
 end
