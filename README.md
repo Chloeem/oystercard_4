@@ -52,5 +52,6 @@ Behaviour = have a balance
 ```
 
 ## Thought log
-- 02/02/22 (13:56) Saving entry station: I'm still not entirely sure whether my approach to the in_journey? method testing is correct as it is being invoked in any of the public methods. I don't know whether my tests looking at the entry_station having a station or not cover this method or if I need additional testing?
+- 02/02/22 (13:56) Saving entry station: I'm still not entirely sure whether my approach to the in_journey? method testing is correct as it isn't being invoked in any of the public methods. I don't know whether my tests looking at the entry_station having a station or not cover this method or if I need additional testing?
+- card.instance_eval{ in_journey? } shows as true before any journey has been taken. I'm unsure how to prevent this now we are no longer using an instance variable to set the boolean?
 
