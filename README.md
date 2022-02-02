@@ -50,3 +50,7 @@ Behaviour = have a balance
        expected `#<Oystercard:0x00007fb7619ae960 @balance=0, @entry_station=[]>.in_journey?` to be falsey, got true
      # ./spec/oystercard_spec.rb:24:in `block (3 levels) in <top (required)>'
 ```
+
+## Thought log
+- 02/02/22 (13:56) Saving entry station: I'm still not entirely sure whether my approach to the in_journey? method testing is correct as it is being invoked in any of the public methods. I don't know whether my tests looking at the entry_station having a station or not cover this method or if I need additional testing?
+
