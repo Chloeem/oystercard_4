@@ -14,10 +14,6 @@ class Oystercard
       @balance += amount
     end
 
-    def in_journey? 
-      !!@entry_station 
-    end
-
     def touch_in(station)
       fail "Insufficient balance below minimum #{MINIMUM_BALANCE}" unless balance >= MINIMUM_BALANCE
       @entry_station << station
@@ -29,6 +25,10 @@ class Oystercard
     end
 
     private
+
+    def in_journey? 
+      !!entry_station 
+    end
 
     def deduct(amount)
       @balance -= amount
