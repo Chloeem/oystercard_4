@@ -1,6 +1,9 @@
+#!/usr/bin/ruby
+
 class Oystercard
     MAXIMUM_BALANCE = 90
     MINIMUM_BALANCE = 1
+    MINIMUM_CHARGE = 1
 
     attr_reader :balance, :entry_station
 
@@ -20,7 +23,7 @@ class Oystercard
     end
 
     def touch_out
-      deduct(MINIMUM_BALANCE)
+      deduct(MINIMUM_CHARGE)
       @entry_station = nil
     end
 

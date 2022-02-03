@@ -31,7 +31,7 @@ describe Oystercard do
     it { is_expected.to respond_to(:touch_in) }
 
     it 'touches in user at beginning of journey' do
-      subject.top_up(Oystercard::MINIMUM_BALANCE)
+      subject.top_up(Oystercard::MINIMUM_CHARGE)
       subject.touch_in(station)
       expect(subject.entry_station[0]).to eq(station)
     end
@@ -41,7 +41,7 @@ describe Oystercard do
     end
 
     it 'remembers the entry station on touch in' do
-      subject.top_up(Oystercard::MINIMUM_BALANCE)
+      subject.top_up(Oystercard::MINIMUM_CHARGE)
       expect { subject.touch_in(station) }.to change { subject.entry_station[0] }.to(station)
     end
 
@@ -60,9 +60,9 @@ describe Oystercard do
     end
 
     it 'should deduct at the end of the journey with the minimum fare' do
-      subject.top_up(Oystercard::MINIMUM_BALANCE)
+      subject.top_up(Oystercard::MINIMUM_CHARGE)
       subject.touch_in(station)
-      expect { subject.touch_out }.to change { subject.balance }.by(-Oystercard::MINIMUM_BALANCE)
+      expect { subject.touch_out }.to change { subject.balance }.by(-Oystercard::MINIMUM_CHARGE)
     end
   end
 
