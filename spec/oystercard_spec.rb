@@ -19,9 +19,8 @@ describe Oystercard do
     end
 
     it 'Raises an error when top up exceeds the limit of £90' do
-      max_balance = Oystercard::MAXIMUM_BALANCE
-      oystercard.top_up(max_balance)
-      expect { oystercard.top_up(max_balance) }.to raise_error("Maximum top up limit of #{maxi_balance} exceeded")
+      oystercard.top_up(Oystercard::MAXIMUM_BALANCE)
+      expect { oystercard.top_up(Oystercard::MAXIMUM_BALANCE) }.to raise_error("Maximum top up limit of #{Oystercard::MAXIMUM_BALANCE} exceeded")
     end
   end
 
@@ -50,7 +49,7 @@ describe Oystercard do
       oystercard.top_up(Oystercard::MINIMUM_BALANCE)
       oystercard.touch_in(entry_station)
       oystercard.touch_out(exit_station)
-      # expect(oystercard.current_journey).to eq( { entry_station: nil, exit_station: nil } )
+      expect(oystercard.current_journey[:exit_station]).to eq(exit_station)
     end
 
     it 'should deduct at the end of the journey with the minimum fare' do

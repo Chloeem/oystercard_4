@@ -28,14 +28,17 @@ class Oystercard
   def touch_out(station)
     deduct(MINIMUM_CHARGE)
     @current_journey[:exit_station] = station
-    @journeys << @current_journey
-    # Think about moving some of this out into a new private method
+    log_journey(current_journey)
   end
 
   private
 
+  def log_journey(current_journey)
+    @journeys << current_journey
+  end
+
   def in_journey?
-    !!entry_station
+    !!current_journey[:entry_station] && current_journey[:exit_station] == nil
   end
 
   def deduct(amount)
