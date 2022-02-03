@@ -33,15 +33,15 @@ class Oystercard
 
   private
 
-  def log_journey(current_journey)
-    @journeys << current_journey
-  end
-
   def in_journey?
     !!current_journey[:entry_station] && current_journey[:exit_station] == nil
   end
 
   def deduct(amount)
     @balance -= amount
+  end
+
+  def log_journey(current_journey)
+    @journeys << current_journey
   end
 end
