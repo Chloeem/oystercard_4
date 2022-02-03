@@ -5,6 +5,10 @@ describe Oystercard do
     expect(Oystercard.new).to respond_to(:balance)
   end
 
+  it 'starts with an empty journey' do
+    expect(subject.journeys).to be_empty
+  end
+
   describe '#top_up' do
     it { is_expected.to respond_to(:top_up).with(1).argument }
 
@@ -40,9 +44,10 @@ describe Oystercard do
       expect { subject.touch_in(station)}.to raise_error("Insufficient balance below minimum #{Oystercard::MINIMUM_BALANCE}")
     end
 
-    it 'remembers the entry station on touch in' do
+    it 'stores an entry station on touch in' do
       subject.top_up(Oystercard::MINIMUM_CHARGE)
-      expect { subject.touch_in(station) }.to change { subject.entry_station}.to(station)
+      subject.touch_in(station)
+      expect(subject.journeys[:entry_station]).to eq(station)
     end
 
   end
@@ -72,7 +77,7 @@ describe Oystercard do
       oystercard.touch_in(station)
       oystercard.touch_out(exit_station)
       # expect(oystercard.exit_station).to eq(exit_station) 
-      expect(oystercard.journeys[:exit_station]).to(exit_station)
+      expect(oystercard.journeys[:exit_station]).to eq(exit_station)
     end
   end
 
