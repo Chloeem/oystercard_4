@@ -33,7 +33,7 @@ describe Oystercard do
     it 'touches in user at beginning of journey' do
       subject.top_up(Oystercard::MINIMUM_CHARGE)
       subject.touch_in(station)
-      expect(subject.entry_station[0]).to eq(station)
+      expect(subject.entry_station).to eq(station)
     end
 
     it 'raises an error when balance is less minimum balance' do
@@ -42,27 +42,37 @@ describe Oystercard do
 
     it 'remembers the entry station on touch in' do
       subject.top_up(Oystercard::MINIMUM_CHARGE)
-      expect { subject.touch_in(station) }.to change { subject.entry_station[0] }.to(station)
+      expect { subject.touch_in(station) }.to change { subject.entry_station}.to(station)
     end
 
   end
 
   describe '#touch_out' do
     let(:station){ double :station }
+    let(:exit_station){ double :exit_station }
+    subject(:oystercard){ described_class.new }
 
     it { is_expected.to respond_to(:touch_out) }
 
     it 'touches out the user at the end of the journey' do
       subject.top_up(Oystercard::MINIMUM_BALANCE)
       subject.touch_in(station)
-      subject.touch_out
+      subject.touch_out(exit_station)
       expect(subject.entry_station).to eq(nil)
     end
 
     it 'should deduct at the end of the journey with the minimum fare' do
       subject.top_up(Oystercard::MINIMUM_CHARGE)
       subject.touch_in(station)
-      expect { subject.touch_out }.to change { subject.balance }.by(-Oystercard::MINIMUM_CHARGE)
+      expect { subject.touch_out(exit_station)}.to change { subject.balance }.by(-Oystercard::MINIMUM_CHARGE)
+    end
+
+    it 'stores an exit station on touch out' do
+      oystercard.top_up(Oystercard::MAXIMUM_BALANCE)
+      oystercard.touch_in(station)
+      oystercard.touch_out(exit_station)
+      # expect(oystercard.exit_station).to eq(exit_station) 
+      expect(oystercard.journeys[:exit_station]).to(exit_station)
     end
   end
 
